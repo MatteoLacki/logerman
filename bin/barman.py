@@ -25,8 +25,7 @@ ap.add_argument('--DBpath',
 ap.add_argument('--debug',
                 help='Run in debug mode.',
                 action='store_true')
-args = ap.parse_args()
-DEBUG = args.debug
+ap = ap.parse_args()
 ############################################################### Flask
 
 
@@ -35,7 +34,7 @@ app  = Flask(__name__)
 def get_db():
     db = getattr(g, '_db', None)
     if db is None:
-        db = g._db = DB(args.DBpath)
+        db = g._db = DB(ap.DBpath)
     return db
 
 @app.route('/')
@@ -45,7 +44,7 @@ def index():
 @app.route('/get_project_id', methods=['POST'])
 def get_project_id():
     if request.data:
-        if DEBUG:
+        if ap.debug:
             print(request.data)
         db = get_db()
         return jsonify(db.get_free_project_id())
@@ -81,10 +80,10 @@ def close_connection(exception):
         del db
 
 
-
 ############################################################### MAIN
 if __name__ == '__main__':
-    app.run(debug=DEBUG,
-            host=args.host,
-            port=args.port,
+    app.run(debug=ap.debug,
+            host=ap.host,
+            port=ap.port,
             threaded=True)
+

@@ -17,4 +17,4 @@ setup(  name='logerman',
                      'Programming Language :: Python :: 3.6',
                      'Programming Language :: Python :: 3.7'],
         install_requires=['flask'],
-        scripts = ['bin/logerman.py'])
+        scripts = ['bin/barman.py'])
