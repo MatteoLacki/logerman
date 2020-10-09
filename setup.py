@@ -16,7 +16,5 @@ setup(  name='logerman',
                      'Topic :: Scientific/Engineering :: Chemistry',
                      'Programming Language :: Python :: 3.6',
                      'Programming Language :: Python :: 3.7'],
-        install_requires=['numpy',
-                          'networkx',
-                          'pandas',
-                          'scipy'])
+        install_requires=['flask'],
+        scripts = ['bin/logerman.py'])
