@@ -20,7 +20,7 @@ ap.add_argument('--port',
                 default=8745, 
                 type=int)
 ap.add_argument('--DBpath',
-                help='Port to listen to.',
+                help='Path to sqlite db with logs.',
                 default=r'C:\SYMPHONY_VODKAS\simple.db' if on_Windows else r'/home/matteo/SYMPHONY_VODKAS/simple.db')
 ap.add_argument('--debug',
                 help='Run in debug mode.',
@@ -53,7 +53,7 @@ def get_project_id():
 def log():
     if request.data:
         l = request.get_json()
-        if DEBUG:
+        if ap.debug:
             print(l)
         db = get_db()
         db.log(*l)
